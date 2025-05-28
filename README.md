@@ -1,4 +1,4 @@
-# 🌍 LanguageDuo
+# 🦫 LanguageDuo
 
 **LanguageDuo** é uma plataforma online desenvolvida para ajudar e incentivar pessoas a aprenderem novos idiomas de forma prática e organizada. O projeto foi desenvolvido utilizando **Java**, **JavaScript**, **JSP** e **CSS**.
 
