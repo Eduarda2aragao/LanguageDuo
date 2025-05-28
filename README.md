@@ -35,5 +35,5 @@ A plataforma oferece cursos dos seguintes idiomas:
 - **JSP (JavaServer Pages)**
 - **CSS**
 
-## 📁 Estrutura do Projeto
+
 
