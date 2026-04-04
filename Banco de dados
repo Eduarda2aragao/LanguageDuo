@@ -1,0 +1,99 @@
+create DATABASE LanguageDuo;
+USE LanguageDuo;
+
+
+CREATE TABLE usuario (
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL  -- Aumentado para armazenar hash
+);
+
+#========================================================================================#
+
+CREATE TABLE professor (
+    id_professor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+);
+
+insert into professor(nome) value("JoÃ£o Silva");
+insert into professor(nome) value("Ana Pereira");
+insert into professor(nome) value("Carlos Junior");
+
+select * from professor;
+
+#========================================================================================#
+
+CREATE TABLE curso (
+    id_curso INT AUTO_INCREMENT PRIMARY KEY,
+    idioma VARCHAR(50) NOT NULL,
+    id_professor INT,
+    FOREIGN KEY (id_professor) REFERENCES professor(id_professor)
+);
+
+
+insert into curso(idioma,  id_professor) values("Protugues", 1);
+
+insert into curso(idioma,  id_professor) values("Espanhol", 2);
+
+insert into curso(idioma,  id_professor) values("Ingles", 3);
+
+
+select * from curso;
+drop table curso;
+
+#========================================================================================#
+
+CREATE TABLE duracao (
+    id_duracao INT AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(20) NOT NULL
+);
+
+insert into duracao(descricao) value("1 hora");
+insert into duracao(descricao) value("2 hora");
+
+select * from duracao;
+drop table duracao;
+
+#========================================================================================#
+
+CREATE TABLE aula (
+    id_aula INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_curso INT NOT NULL,
+    id_duracao INT NOT NULL,
+    data_aula DATE NOT NULL,
+    hora_aula TIME NOT NULL,
+    
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+    FOREIGN KEY (id_curso) REFERENCES curso(id_curso),
+    FOREIGN KEY (id_duracao) REFERENCES duracao(id_duracao)
+);
+
+select * from aula;
+drop table aula;
+
+#========================================================================================#
+                                    #JOIN#
+                                    
+                                  
+
+
+SELECT 
+    a.data_aula AS data,
+    a.hora_aula AS hora,
+    u.nome AS aluno,
+    c.idioma AS curso,
+    p.nome AS professor,
+    d.descricao AS duracao
+FROM 
+    aula a
+JOIN usuario u ON a.id_usuario = u.id
+JOIN curso c ON a.id_curso = c.id_curso
+JOIN professor p ON c.id_professor = p.id_professor
+JOIN duracao d ON a.id_duracao = d.id_duracao
+WHERE 
+    a.data_aula >= CURDATE()
+ORDER BY 
+    a.data_aula, 
+    a.hora_aula;
