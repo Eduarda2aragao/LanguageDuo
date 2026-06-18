@@ -35,7 +35,7 @@ A plataforma oferece cursos dos seguintes idiomas:
 - **JSP (JavaServer Pages)**
 - **CSS**
 
-## Versão mobile
+## Versão mobile com o mesmo projeto
 https://www.youtube.com/watch?v=FpGP4TV5zf0
 
 
